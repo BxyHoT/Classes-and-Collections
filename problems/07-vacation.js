@@ -14,7 +14,15 @@
  * @returns {string}
  */
 function vacation(date) {
-    return undefined;
+    const [day, month, year] = date.split('.').map(Number);
+    let currentDate = new Date(year, month - 1, day);
+    currentDate.setDate(currentDate.getDate() + 14);
+    const dayFormatted = String(currentDate.getDate()).padStart(2, '0');
+    const monthFormatted = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const yearFormatted = currentDate.getFullYear();
+    const dateAfterVacation = `${dayFormatted}.${monthFormatted}.${yearFormatted}`;
+
+    return dateAfterVacation;
 }
 
 module.exports = vacation;

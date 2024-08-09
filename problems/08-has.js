@@ -13,7 +13,18 @@
  * @returns {boolean}
  */
 function has(path, object) {
-    return undefined;
+    let currentPath = object;
+
+    for (i = 0; i < path.length; i++) {
+        const isUndefined = currentPath === undefined;
+        const isNull = currentPath === null;
+
+        if (isUndefined || isNull || !Object.prototype.hasOwnProperty.call(currentPath, path[i])) return false;
+        currentPath = currentPath[path[i]];
+    };
+
+    return true;
 }
+
 
 module.exports = has;

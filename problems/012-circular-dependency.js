@@ -22,7 +22,35 @@
  * @returns {boolean}
  */
 function hasCircularDependency(servicesMap) {
+    const checkedService = new Set();
+    const currentService = new Set();
+
+    function checkDependency(service) {
+        if (currentService.has(service)) return true;
+        if (checkedService.has(service)) return false;
+
+        checkedService.add(service);
+        currentService.add(service);
+
+        for (const dependency of servicesMap[service]) {
+            if (checkDependency(dependency)) return true;
+        };
+
+        currentService.delete(service);
+        return false;
+    };
+
+    for (const service in servicesMap) {
+        if (checkDependency(service)) return true;
+    };
+
     return false;
 }
+
+console.log(hasCircularDependency({
+    http: ['dogsApi'],
+    apiClient: ['http'],
+    dogsApi: ['apiClient'],
+}))
 
 module.exports = hasCircularDependency;

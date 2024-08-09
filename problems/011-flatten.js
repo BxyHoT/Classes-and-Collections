@@ -10,7 +10,21 @@
  * @returns {number[]}
  */
 function flatten(array) {
-    return undefined;
+    if (!Array.isArray(array)) return;
+    const flattenArray = [];
+    if (array.length === 0) return flattenArray;
+
+    function flattenRecuse(arr) {
+        arr.forEach(item => {
+            if (Array.isArray(item)) {
+                flattenRecuse(item);
+            } else flattenArray.push(item);
+        });
+    };
+    flattenRecuse(array);
+
+    return flattenArray;
 }
+
 
 module.exports = flatten;

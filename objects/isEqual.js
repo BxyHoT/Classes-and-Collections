@@ -7,12 +7,16 @@
  * @returns {boolean}
  */
 
-export const isEqual = (firstObject, secondObject) => {
-    throw new Error(`Напишите здесь свое решение ${firstObject} ${secondObject}`);
+const isEqual = (firstObject, secondObject) => {
+    // throw new Error(`Напишите здесь свое решение ${firstObject} ${secondObject}`);
+    const jsonFirstObject = JSON.stringify(firstObject);
+    const jsonSecondObject = JSON.stringify(secondObject);
+
+    return jsonFirstObject === jsonSecondObject;
 };
 
-const data = {a: 1, b: 1};
-const data2 = {a: 1, b: 1};
-const data3 = {a: 1, b: 2};
+const data = { a: 1, b: 1 };
+const data2 = { a: 1, b: 1 };
+const data3 = { a: 1, b: 2 };
 console.log(isEqual(data, data2)); // true
 console.log(isEqual(data, data3)); // false

@@ -7,9 +7,18 @@
  * @returns {Object} - новый объект без удаленных значений
  */
 
-export const without = (object, ...args) => {
-    throw new Error(`Напишите здесь свое решение ${object} ${args}`);
+const without = (object, ...args) => {
+    // throw new Error(`Напишите здесь свое решение ${object} ${args}`);
+    const obectCopy = { ...object };
+
+    for (key in obectCopy) {
+        args.forEach(deleteKey => {
+            if (deleteKey === key) delete obectCopy[key];
+        });
+    };
+
+    return obectCopy;
 };
 
-const data = {a: 1, b: 2, c: 3};
+const data = { a: 1, b: 2, c: 3 };
 console.log(without(data, 'b', 'c')); // { a: 1 }

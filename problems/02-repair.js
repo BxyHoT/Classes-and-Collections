@@ -16,7 +16,11 @@
  * @returns {number}
  */
 function repair(width, length, height) {
-    return undefined;
+    const squareWidth = 2 * width * height;
+    const squareLength = 2 * length * height;
+    const sumSquare = squareLength + squareWidth;
+
+    return Math.ceil(sumSquare / 16);
 }
 
 module.exports = repair;

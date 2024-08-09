@@ -16,7 +16,16 @@
  * @returns {boolean}
  */
 function parentheses(value) {
-    return undefined;
+    if (value === '') return false;
+
+    const regex = /\(\)/g;
+    let stringCopy = value;
+
+    while (regex.test(stringCopy)) {
+        stringCopy = stringCopy.replace(regex, '');
+    };
+
+    return stringCopy === '';
 }
 
 module.exports = parentheses;

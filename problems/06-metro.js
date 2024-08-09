@@ -17,7 +17,11 @@
  * @returns {number}
  */
 function metro(x, y) {
-    return undefined;
+    if (Math.abs(x - y) === 12) return 0;
+    if (Math.abs(x - y) > 5) return 5;
+
+    return Math.max(x, y) - Math.min(x, y) - 1;
+
 }
 
 module.exports = metro;
